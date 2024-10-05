@@ -1,11 +1,13 @@
 import './App.css'
 import PromptContainer from './components/Bubbles'
+import Navbar from './components/Navbar'
 
 function App() {
 
   return (
     <>
-        <PromptContainer />
+        <Navbar />
+        <PromptContainer className={""} />
     </>
   )
 }

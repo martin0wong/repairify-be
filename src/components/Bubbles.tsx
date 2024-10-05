@@ -1,10 +1,14 @@
 import { twMerge } from "tailwind-merge"
 
-export default function PromptContainer(className?: string | undefined) {
+interface props {
+    className: string | undefined
+}
+
+export default function PromptContainer({ className } : props) {
     return (
         <>
         {/* Prompt Messages Container - Modify the height according to your need */}
-        <div className={twMerge('flex h-[97vh] w-full flex-col',className)}>
+        <div className={twMerge('flex h-[80vh] w-full flex-col',className)}>
         {/* Prompt Messages */}
         <div
             className="flex-1 space-y-6 overflow-y-auto rounded-xl bg-slate-200 p-4 text-sm leading-6 text-slate-900 shadow-sm dark:bg-slate-900 dark:text-slate-300 sm:text-base sm:leading-7"
