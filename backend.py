@@ -2,13 +2,13 @@ from flask import Flask, request, jsonify
 import config
 import re
 import base64
-from langchain import Bedrock
+from langchain_aws import ChatBedrock
 
 # Create a Flask app
 app = Flask(__name__)
 
 # Set up the Bedrock model using LangChain
-bedrock_model = Bedrock(
+llama_model = ChatBedrock(
     model_name="us.meta.llama3-2-90b-instruct-v1:0",
     aws_access_key_id=config.AWS_ACCESS_KEY_ID,
     aws_secret_access_key=config.AWS_SECRET_ACCESS_KEY,
@@ -37,10 +37,10 @@ def generate():
             # Decode the base64 image
             image_data = decode_base64_image(prompt)
             # Process the image through Bedrock
-            message = bedrock_model(image_data)
+            message = llama_model(image_data)
         else:
             # Process the text prompt through Bedrock
-            message = bedrock_model(prompt)
+            message = llama_model(prompt)
 
         return jsonify({'message': message}), 200
 
