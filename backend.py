@@ -1,13 +1,10 @@
 from flask import Flask, request, jsonify
 import config
-from dotenv import load_dotenv
 import re
 import base64
 from langchain import Bedrock
 
-# Load environment variables from .env file
-load_dotenv()
-
+# Create a Flask app
 app = Flask(__name__)
 
 # Set up the Bedrock model using LangChain
