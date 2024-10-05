@@ -9,7 +9,8 @@ app = Flask(__name__)
 
 # Set up the Bedrock model using LangChain
 llama_model = ChatBedrock(
-    model_name="us.meta.llama3-2-90b-instruct-v1:0",
+    model_id="us.meta.llama3-2-90b-instruct-v1:0",
+    model_kwargs={"temperature": 0},
     aws_access_key_id=config.AWS_ACCESS_KEY_ID,
     aws_secret_access_key=config.AWS_SECRET_ACCESS_KEY,
     region_name=config.AWS_DEFAULT_REGION,
