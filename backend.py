@@ -13,6 +13,7 @@ llama_model = ChatBedrock(
     model_kwargs={"temperature": 0},
     aws_access_key_id=config.AWS_ACCESS_KEY_ID,
     aws_secret_access_key=config.AWS_SECRET_ACCESS_KEY,
+    aws_session_token=config.AWS_SESSION_TOKEN,
     region_name=config.AWS_DEFAULT_REGION,
 )
 
@@ -38,12 +39,12 @@ def generate():
             # Decode the base64 image
             image_data = decode_base64_image(prompt)
             # Process the image through Bedrock
-            message = llama_model(image_data)
+            message = llama_model.invoke(image_data)
         else:
             # Process the text prompt through Bedrock
-            message = llama_model(prompt)
+            message = llama_model.invoke(prompt)
 
-        return jsonify({'message': message}), 200
+        return str(message)
 
     except Exception as e:
         return jsonify({'error': f'Failed to generate response: {str(e)}'}), 500

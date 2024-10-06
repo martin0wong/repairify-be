@@ -1,3 +1,3 @@
 Flask
 flask-cors
-langchain
+langchain_aws
